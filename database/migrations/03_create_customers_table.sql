@@ -16,6 +16,10 @@ CREATE TABLE IF NOT EXISTS customers (
     UpdatedAt TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
     -- Primary Key
-    PRIMARY KEY (CustomerSSN)
+    PRIMARY KEY (CustomerSSN),
+
+    -- Foreign Key
+    EmpSSN INT UNSIGNED NOT NULL,
+    FOREIGN KEY (EmpSSN) REFERENCES employees(EmpSSN)
 
 );

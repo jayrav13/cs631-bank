@@ -14,6 +14,5 @@ CREATE TABLE IF NOT EXISTS accounts (
 
     -- Primary Key
     PRIMARY KEY (AccountNumber)
-
-    -- TODO: Create dependents table
+    
 );

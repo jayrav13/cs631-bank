@@ -16,7 +16,11 @@ CREATE TABLE IF NOT EXISTS employees (
     UpdatedAt TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
     -- Primary Key
-    PRIMARY KEY (EmpSSN)
+    PRIMARY KEY (EmpSSN),
+
+    -- Foreign Key
+    BranchId INT UNSIGNED NOT NULL,
+    FOREIGN KEY (BranchId) REFERENCES branches(id)
 
     -- TODO: Create dependents table
 );
