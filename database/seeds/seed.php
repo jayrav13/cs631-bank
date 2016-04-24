@@ -17,11 +17,11 @@
         if(strpos($file, '.sql') !== false) 
         {
             $query = CS50::query(file_get_contents($file));
-            if($query == 0) 
+            if($query == 0)
             {
                 echo("Query executed: $file\n");
             }
-            else 
+            else
             {
                 echo("Review query: $file\n");
             }
