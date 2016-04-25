@@ -27,7 +27,7 @@
     {
         if (empty($_SESSION["id"]))
         {
-            redirect("login.php");
+            header("Location: login.php");
         }
     }
 

@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS branches (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 
     -- Attributes
-    BranchName VARCHAR(255) NOT NULL,
+    BranchName VARCHAR(255) NOT NULL UNIQUE,
     BranchAssets DECIMAL(12, 2) NOT NULL DEFAULT 0.00,
 
     -- Timestamps
