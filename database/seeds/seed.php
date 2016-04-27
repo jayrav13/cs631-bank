@@ -14,17 +14,10 @@
         }
 
         // Execute query with file contents if SQL file. On success, print.
-        if(strpos($file, '.sql') !== false) 
+        if($file != $_SERVER["PHP_SELF"] && strpos($file, '.php') != false) 
         {
-            $query = CS50::query(file_get_contents($file));
-            if($query == 0) 
-            {
-                echo("Query executed: $file\n");
-            }
-            else 
-            {
-                echo("Review query: $file\n");
-            }
+			$output = exec("php {$file}");
+			echo("Executed {$file}.\n");
         }
     }
 

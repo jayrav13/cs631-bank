@@ -1,0 +1,1 @@
+INSERT INTO branches (BranchName) VALUES (?);
