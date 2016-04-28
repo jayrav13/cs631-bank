@@ -33,7 +33,7 @@
             $row = $rows[0];
 
             // compare hash of user's input against hash that's in database
-            if (password_verify($_POST["password"], $row["hash"]))
+            if (password_verify($_POST["password"], $row["CustomerPassword"]))
             {
                 // remember that user's now logged in by storing user's ID in session
                 $_SESSION["id"] = $row["id"];

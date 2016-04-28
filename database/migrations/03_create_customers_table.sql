@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS customers (
     -- Attributes
     CustomerName VARCHAR(255) NOT NULL,
     CustomerAddr VARCHAR(255) NOT NULL,
-    CustomerUsername VARCHAR(32) NOT NULL,
-    CustomerPassword VARCHAR(32) NOT NULL,
+    CustomerUsername VARCHAR(64) NOT NULL,
+    CustomerPassword VARCHAR(64) NOT NULL,
 
     -- Timestamps
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
