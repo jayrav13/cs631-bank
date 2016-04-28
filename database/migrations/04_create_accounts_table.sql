@@ -7,12 +7,18 @@ CREATE TABLE IF NOT EXISTS accounts (
 
     -- Attributes
     AccountBalance DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    AccountType TINYINT(1) DEFAULT 1, -- 1 = checking, 2 - savings, 3 - loan
+    -- TO DO - figure out the checking, saving, loan stuff
 
     -- Timestamps
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UpdatedAt TIMESTAMP DEFAULT 0 ON UPDATE CURRENT_TIMESTAMP,
+    UpdatedAt TIMESTAMP DEFAULT "1970-01-01 00:00:00" ON UPDATE CURRENT_TIMESTAMP,
 
     -- Primary Key
-    PRIMARY KEY (AccountNumber)
+    PRIMARY KEY (AccountNumber),
+
+    -- Foreign Key
+    BranchId INT UNSIGNED NOT NULL,
+    FOREIGN KEY (BranchId) REFERENCES branches(id)
     
 );
