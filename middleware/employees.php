@@ -1,7 +1,7 @@
 <?php
 
-    if(!array_key_exists("EmpSSN", $user))
+    if(empty($_SESSION["TYPE"]) || $_SESSION["TYPE"] != "employee")
     {
         logout();
-        header("Location: /");
+        header("Location: login.php");
     }

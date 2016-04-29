@@ -47,7 +47,7 @@
 						<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
 						<li><a href="#">Link</a></li>
 					</ul>
-					<?php if(empty($_SESSION["id"])): ?>
+					<?php if(empty($_SESSION["TOKEN"]) && empty($_SESSION["TYPE"])): ?>
 				  	<ul class="nav navbar-nav navbar-right">
 				  		<!-- RIGHT NAV BAR -->
 						<li><a href="/login.php">Login</a></li>

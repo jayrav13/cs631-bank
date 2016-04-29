@@ -1,6 +1,6 @@
 <?php
 
-    if(!array_key_exists("CustomerSSN", $user))
+    if(empty($_SESSION["TYPE"]) || $_SESSION["TYPE"] != "customer")
     {
         logout();
         header("Location: login.php");

@@ -7,6 +7,6 @@
     logout();
 
     // redirect user
-    header("Location: /");
+    header("Location: login.php");
 
 ?>
