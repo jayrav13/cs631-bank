@@ -1,1 +1,1 @@
-INSERT INTO customers (CustomerSSN, CustomerName, CustomerAddr, CustomerUsername, CustomerPassword, EmpSSN) VALUES (?, ?, ?, ?, ?, ?)
+INSERT INTO customers (CustomerSSN, CustomerName, CustomerAddr, CustomerUsername, Password, EmpSSN) VALUES (?, ?, ?, ?, ?, ?)

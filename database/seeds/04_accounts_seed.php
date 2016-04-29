@@ -2,14 +2,15 @@
 
     // CS50 library
     require("../../vendor/library50-php-5/CS50/CS50.php");
+    require("../../includes/functions.php");
     CS50::init(__DIR__ . "/../../config.json");
 
     $rows = [
-        [rand(pow(10, 9-1), pow(10, 9)-1), 0.00, 1],
-        [rand(pow(10, 9-1), pow(10, 9)-1), 0.00, 1],
-        [rand(pow(10, 9-1), pow(10, 9)-1), 0.00, 1],
-        [rand(pow(10, 9-1), pow(10, 9)-1), 0.00, 1],
-        [rand(pow(10, 9-1), pow(10, 9)-1), 0.00, 1],
+        [jr_random(9), rand(100, 5000), 1],
+        [jr_random(9), rand(100, 5000), 1],
+        [jr_random(9), rand(100, 5000), 1],
+        [jr_random(9), rand(100, 5000), 1],
+        [jr_random(9), rand(100, 5000), 1],
     ];
 
     foreach($rows as $row)

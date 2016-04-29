@@ -24,7 +24,14 @@
         }
 
         // query database for user
-        $rows = CS50::query("SELECT * FROM customers WHERE CustomerUsername = ?", $_POST["username"]);
+        if($_POST["type"] == "customer")
+        {
+            $rows = CS50::query("SELECT * FROM customers WHERE CustomerUsername = ?", $_POST["username"]);
+        }
+        else
+        {
+            $rows = CS50::query("SELECT * FROM employees WHERE EmpUsername = ?", $_POST["username"]);
+        }
 
         // if we found user, check password
         if (count($rows) == 1)
@@ -33,11 +40,20 @@
             $row = $rows[0];
 
             // compare hash of user's input against hash that's in database
-            if (password_verify($_POST["password"], $row["CustomerPassword"]))
+            if (password_verify($_POST["password"], $row["Password"]))
             {
                 // remember that user's now logged in by storing user's ID in session
-                $_SESSION["CustomerSSN"] = $row["CustomerSSN"];
-
+                if($_POST["type"] == "customer")
+                {
+                    $_SESSION["TOKEN"] = $row["CustomerSSN"];
+                    $_SESSION["TYPE"] = $_POST["type"];
+                }
+                else if($_POST["type"] == "employee")
+                {
+                    $_SESSION["TOKEN"] = $row["EmpSSN"];
+                    $_SESSION["TYPE"] = $_POST["type"];
+                }
+                
                 // redirect to portfolio
                 header("Location: /");
             }

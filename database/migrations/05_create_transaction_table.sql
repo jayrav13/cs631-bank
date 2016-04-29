@@ -1,17 +1,16 @@
 -- create_transaction_table.sql
 
-CREATE TABLE IF NOT EXISTS transaction (
+CREATE TABLE IF NOT EXISTS transactions (
 
     -- Primary Key
-    TransacCode INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    TransacCode INT UNSIGNED NOT NULL,
 
     -- Attributes
     TransacName VARCHAR(255) NOT NULL,
     TransacCharge DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
-    TransacType TINYINT(1) NOT NULL,
+    TransacType CHAR(2) NOT NULL,
     TransacAmount DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
     TransacDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    TransacNumber INT UNSIGNED NOT NULL,
 
     -- Timestamps
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

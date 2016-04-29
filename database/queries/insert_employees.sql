@@ -1,1 +1,1 @@
-INSERT INTO employees (EmpSSN, EmpName, EmpPhone, EmpStartDate, EmpManagerSSN, BranchId) VALUES (?, ?, ?, ?, ?, ?);
+INSERT INTO employees (EmpSSN, EmpName, EmpPhone, EmpStartDate, EmpManagerSSN, BranchId, EmpUsername, Password) VALUES (?, ?, ?, ?, ?, ?, ?, ?);

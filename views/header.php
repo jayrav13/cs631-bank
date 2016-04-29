@@ -54,6 +54,9 @@
 						<li><a href="/register.php">Register</a></li>
 				  	</ul>
 				  	<?php else: ?>
+				  	<ul class="nav navbar-nav navbar-right">
+				  		<li><a href="/logout.php">Logout</a></li>
+				  	</ul>
 				  	<?php endif ?>
 				</div>
 			</div>

@@ -10,6 +10,9 @@ CREATE TABLE IF NOT EXISTS accounts (
     AccountType TINYINT(1) DEFAULT 1, -- 1 = checking, 2 - savings, 3 - loan
     -- TO DO - figure out the checking, saving, loan stuff
 
+    -- Overdrafts managed by negative balance value
+    InterestRate Decimal (5, 2) NOT NULL DEFAULT 0.00,
+
     -- Timestamps
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UpdatedAt TIMESTAMP DEFAULT "1970-01-01 00:00:00" ON UPDATE CURRENT_TIMESTAMP,

@@ -1,0 +1,1 @@
+INSERT INTO customer_account (CustomerSSN, AccountNumber) VALUES (?, ?);

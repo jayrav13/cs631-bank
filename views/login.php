@@ -8,6 +8,18 @@
                 <div class="form-group">
                     <input class="form-control" name="password" placeholder="Password" type="password"/>
                 </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="type" value="customer" checked>
+                        Customer
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="type" value="employee">
+                        Employee
+                    </label>
+                </div>
                 <div class="form-group text-center">
                     <button class="btn btn-default" type="submit">
                         <span aria-hidden="true" class="glyphicon glyphicon-log-in"></span>

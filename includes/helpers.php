@@ -58,6 +58,7 @@
         {
             // extract variables into local scope
             extract($values);
+            $user = user();
 
             // render view (between header and footer)
             require("../views/header.php");
@@ -75,13 +76,21 @@
 
     function user()
     {
-        if(empty($_SESSION["id"]))
+        if(empty($_SESSION["TOKEN"]))
         {
             return false;
         }
         else
         {
-            $rows = CS50::query("SELECT * FROM customers WHERE CustomerSSN = ?", $_SESSION["id"]);
+            $rows = NULL;
+            if($_SESSION["TYPE"] == "customer")
+            {
+                $rows = CS50::query("SELECT * FROM customers WHERE CustomerSSN = ?", $_SESSION["TOKEN"]);
+            }
+            else if($_SESSION["TYPE"] == "employee")
+            {
+                $rows = CS50::query("SELECT * FROM employees WHERE EmpSSN = ?", $_SESSION["TOKEN"]);
+            }
             if(count($rows) == 1)
             {
                 return $rows[0];
@@ -92,5 +101,4 @@
             }
         }
     }
-
 ?>

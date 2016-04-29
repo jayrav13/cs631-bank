@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS customers (
     CustomerName VARCHAR(255) NOT NULL,
     CustomerAddr VARCHAR(255) NOT NULL,
     CustomerUsername VARCHAR(64) NOT NULL UNIQUE,
-    CustomerPassword VARCHAR(64) NOT NULL,
+    Password VARCHAR(64) NOT NULL,
 
     -- Timestamps
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
