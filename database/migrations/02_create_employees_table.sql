@@ -3,7 +3,7 @@
 CREATE TABLE IF NOT EXISTS employees (
 
     -- Primary Key
-    EmpSSN INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    EmpSSN INT UNSIGNED NOT NULL,
 
     -- Attributes
     EmpName VARCHAR(255) NOT NULL,

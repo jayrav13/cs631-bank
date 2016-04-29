@@ -4,11 +4,12 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
-        render("register.php", ["title" => "Register"]);
+        $employees = CS50::query("SELECT EmpSSN, EmpName FROM employees");
+        render("register.php", ["title" => "Register", "employees" => $employees]);
     }
     else if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        if (empty($_POST["username"]) || empty($_POST["password"]) || empty($_POST["name"]) || empty($_POST["address"]))
+        if (empty($_POST["username"]) || empty($_POST["password"]) || empty($_POST["name"]) || empty($_POST["address"]) || empty($_POST["ssn"]))
         {
             apologize("You must provide a username, password, name and address.");
         }
@@ -31,8 +32,8 @@
             }
             else
             {
-                $insert = CS50::query("INSERT INTO customers (CustomerName, CustomerAddr, CustomerUsername, CustomerPassword, EmpSSN) VALUES (?, ?, ?, ?, ?)", $_POST["name"], $_POST["address"], $_POST["username"], password_hash($_POST["password"], PASSWORD_DEFAULT), 1234567890);
-                apologize("YAY!");
+                $insert = CS50::query(file_get_contents("../database/queries/insert_customers.sql"), $_POST["ssn"], $_POST["name"], $_POST["address"], $_POST["username"], password_hash($_POST["password"], PASSWORD_DEFAULT), $_POST["employee"]);
+                header("Location: /");
             }
 
         }

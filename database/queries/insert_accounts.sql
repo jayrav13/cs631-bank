@@ -1,0 +1,1 @@
+INSERT INTO accounts (AccountNumber, AccountBalance, AccountType, BranchId) VALUES (?, ?, ?, ?);

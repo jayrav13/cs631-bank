@@ -3,12 +3,12 @@
 CREATE TABLE IF NOT EXISTS customers (
 
     -- Primary Key
-    CustomerSSN INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    CustomerSSN INT UNSIGNED NOT NULL UNIQUE,
 
     -- Attributes
     CustomerName VARCHAR(255) NOT NULL,
     CustomerAddr VARCHAR(255) NOT NULL,
-    CustomerUsername VARCHAR(64) NOT NULL,
+    CustomerUsername VARCHAR(64) NOT NULL UNIQUE,
     CustomerPassword VARCHAR(64) NOT NULL,
 
     -- Timestamps

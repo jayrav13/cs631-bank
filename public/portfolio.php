@@ -3,4 +3,4 @@
     // configuration
     require("../includes/config.php"); 
 
-    dump($user);
+    render("portfolio", ["user" => $user])

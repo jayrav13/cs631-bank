@@ -33,9 +33,4 @@
 
     $user = user();
 
-    if($user == false)
-    {
-        render("apologize.php", ["message" => "Something went wrong. Please close out of this window and return back to our portal to try again."]);
-    }
-
 ?>

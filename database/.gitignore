@@ -1,0 +1,5 @@
+mysql -u root < reset.sql
+cd migrations/
+php migrate.php
+cd ../seed/
+php seed.php
