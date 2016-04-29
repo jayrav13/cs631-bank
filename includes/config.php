@@ -25,10 +25,17 @@
     // require authentication for all pages except /login.php, /logout.php, and /register.php
     if (!in_array($_SERVER["PHP_SELF"], ["/login.php", "/logout.php", "/register.php"]))
     {
-        if (empty($_SESSION["id"]))
+        if (empty($_SESSION["CustomerSSN"]))
         {
             header("Location: login.php");
         }
+    }
+
+    $user = user();
+
+    if($user == false)
+    {
+        render("apologize.php", ["message" => "Something went wrong. Please close out of this window and return back to our portal to try again."]);
     }
 
 ?>

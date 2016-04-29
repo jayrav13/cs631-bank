@@ -36,10 +36,10 @@
             if (password_verify($_POST["password"], $row["CustomerPassword"]))
             {
                 // remember that user's now logged in by storing user's ID in session
-                $_SESSION["id"] = $row["id"];
+                $_SESSION["CustomerSSN"] = $row["CustomerSSN"];
 
                 // redirect to portfolio
-                redirect("/");
+                header("Location: /");
             }
         }
 

@@ -2,46 +2,69 @@
 
 <html>
 
-    <head>
+	<head>
 
-        <!-- http://getbootstrap.com/ -->
-        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+		<!-- http://getbootstrap.com/ -->
+		<link href="/css/bootstrap.min.css" rel="stylesheet"/>
 
-        <link href="/css/styles.css" rel="stylesheet"/>
+		<link href="/css/styles.css" rel="stylesheet"/>
 
-        <?php if (isset($title)): ?>
-            <title>C$50 Finance: <?= htmlspecialchars($title) ?></title>
-        <?php else: ?>
-            <title>C$50 Finance</title>
-        <?php endif ?>
+		<?php if (isset($title)): ?>
+			<title>C$50 Finance: <?= htmlspecialchars($title) ?></title>
+		<?php else: ?>
+			<title>C$50 Finance</title>
+		<?php endif ?>
 
-        <!-- https://jquery.com/ -->
-        <script src="/js/jquery-1.11.3.min.js"></script>
+		<!-- https://jquery.com/ -->
+		<script src="/js/jquery-1.11.3.min.js"></script>
 
-        <!-- http://getbootstrap.com/ -->
-        <script src="/js/bootstrap.min.js"></script>
+		<!-- http://getbootstrap.com/ -->
+		<script src="/js/bootstrap.min.js"></script>
 
-        <script src="/js/scripts.js"></script>
+		<script src="/js/scripts.js"></script>
 
-    </head>
+	</head>
 
-    <body>
+	<body>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+</a>
+				</div>
 
-        <div class="container">
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<!-- LEFT NAV BAR -->
+						<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+						<li><a href="#">Link</a></li>
+					</ul>
+					<?php if(empty($_SESSION["id"])): ?>
+				  	<ul class="nav navbar-nav navbar-right">
+				  		<!-- RIGHT NAV BAR -->
+						<li><a href="/login.php">Login</a></li>
+						<li><a href="/register.php">Register</a></li>
+				  	</ul>
+				  	<?php else: ?>
+				  	<?php endif ?>
+				</div>
+			</div>
+		</nav>
 
-            <div id="top">
-                <div>
-                    <a href="/"><img alt="C$50 Finance" src="/img/logo.png"/></a>
-                </div>
-                <?php if (!empty($_SESSION["id"])): ?>
-                    <ul class="nav nav-pills">
-                        <li><a href="quote.php">Quote</a></li>
-                        <li><a href="buy.php">Buy</a></li>
-                        <li><a href="sell.php">Sell</a></li>
-                        <li><a href="history.php">History</a></li>
-                        <li><a href="logout.php"><strong>Log Out</strong></a></li>
-                    </ul>
-                <?php endif ?>
-            </div>
+		<div class="container">
 
-            <div id="middle">
+			<div class="text-center">
+				<div>
+					<div class="page-header">
+						<h1 class="header">BEST BANK <small>Your Banking Solution</small></h1>
+					</div>
+				</div>
+			</div>

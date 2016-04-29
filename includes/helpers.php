@@ -73,4 +73,24 @@
         }
     }
 
+    function user()
+    {
+        if(empty($_SESSION["id"]))
+        {
+            return false;
+        }
+        else
+        {
+            $rows = CS50::query("SELECT * FROM customers WHERE CustomerSSN = ?", $_SESSION["id"]);
+            if(count($rows) == 1)
+            {
+                return $rows[0];
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
 ?>

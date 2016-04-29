@@ -1,0 +1,9 @@
+@font-face {
+    font-family: SanFrancisco;
+    src: url("../fonts/SF-UI/SF-UI-Display-Thin.otf");
+}
+
+body
+{
+    font-family: SanFrancisco;
+}
