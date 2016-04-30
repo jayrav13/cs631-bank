@@ -16,3 +16,5 @@ ON
     accounts.AccountNumber = transactions.AccountNumber
 WHERE
     customers.CustomerSSN = ?
+ORDER BY
+    transactions.CreatedAt DESC

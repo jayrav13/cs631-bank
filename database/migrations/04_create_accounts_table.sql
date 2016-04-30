@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS accounts (
 
     -- Attributes
     AccountBalance DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    CHECK (AccountBalance >= 0.00),
     AccountType TINYINT(1) DEFAULT 1, -- 1 = checking, 2 - savings, 3 - loan
     -- TO DO - figure out the checking, saving, loan stuff
 

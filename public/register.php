@@ -35,6 +35,5 @@
                 $insert = CS50::query(file_get_contents("../database/queries/insert_customers.sql"), $_POST["ssn"], $_POST["name"], $_POST["address"], $_POST["username"], password_hash($_POST["password"], PASSWORD_DEFAULT), $_POST["employee"]);
                 header("Location: /");
             }
-
         }
     }
