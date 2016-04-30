@@ -16,15 +16,8 @@
         // Execute query with file contents if SQL file. On success, print.
         if(strpos($file, '.sql') !== false) 
         {
-            $query = CS50::query(file_get_contents($file));
-            if($query == 0) 
-            {
-                echo("Query executed: $file\n");
-            }
-            else 
-            {
-                echo("Review query: $file\n");
-            }
+            exec("mysql -u root cs631 < $file");
+            echo("Query executed: $file\n");
         }
     }
 

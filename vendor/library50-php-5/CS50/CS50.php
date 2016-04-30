@@ -349,7 +349,14 @@
             $statement = $handle->query($query);
             if ($statement === false)
             {
-                trigger_error($handle->errorInfo()[2], E_USER_ERROR);
+                if($handle->errorInfo()[0] == "22023")
+                {
+                    return -1;
+                }
+                else
+                {
+                    trigger_error($handle->errorInfo()[2], E_USER_ERROR);
+                }                
             }
    
             // if query was SELECT
