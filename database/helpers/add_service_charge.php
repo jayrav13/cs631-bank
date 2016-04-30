@@ -20,12 +20,25 @@
             $result[0] = CS50::query("INSERT INTO transactions (TransacCode, TransacName, TransacCharge, TransacType, TransacAmount, AccountBalance, AccountNumber) VALUES (?, ?, ?, ?, ?, ?, ?)", jr_random(9), "Service Charge", 2.00, "SC", 2.00, $balance[0]["AccountBalance"] + 2.00, $charge);
 
             $balance = CS50::query("SELECT AccountBalance FROM accounts WHERE AccountNumber = ?", $account["AccountNumber"]);
-            $result[1] = CS50::query("INSERT INTO transactions (TransacCode, TransacName, TransacCharge, TransacType, TransacAmount, AccountBalance, AccountNumber) VALUES (?, ?, ?, ?, ?, ?, ?)", jr_random(9), "Service Charge", 2.00, "SC", -2.00, $balance[0]["AccountBalance"] - 2.00, $account["AccountNumber"]);
+            $result[1] = CS50::query("INSERT INTO transactions (TransacCode, TransacName, TransacCharge, TransacType, TransacAmount, AccountBalance, AccountNumber) VALUES (?, ?, ?, ?, ?, ?, ?)", jr_random(9), "Service Charge", 2.00, "SC", - 2.00, $balance[0]["AccountBalance"] - 2.00, $account["AccountNumber"]);
 
             if($result[0] + $result[1] == 2)
             {
-                CS50::query("COMMIT");
-                echo("Service Fee charged for Account " . $account["AccountNumber"] . "\n");
+                $update = [0, 0];
+
+                $update[0] = CS50::query("UPDATE accounts SET AccountBalance = AccountBalance - 2.00 WHERE AccountNumber = ?", $account["AccountNumber"]);
+                $update[1] = CS50::query("UPDATE accounts SET AccountBalance = AccountBalance + 2.00 WHERE AccountNumber = ?", $charge);
+                
+                if($update[0] == 1 && $update[1] == 1)
+                {
+                    CS50::query("COMMIT");
+                    echo("Service Fee charged for Account " . $account["AccountNumber"] . "\n");
+                }
+                else
+                {
+                    CS50::query("ROLLBACK");
+                    echo("Failed to add Service Fee for Account " . $account["AccountNumber"] . "\n");
+                }
             }
         }
     }

@@ -12,7 +12,7 @@
     {
         foreach($accounts as $account)
         {
-            if(rand(1, 2) % 2 == 0)
+            if(rand(1, 2) % 2 == 0 && $account["AccountNumber"] != 1111111111)
             {
                 $query = CS50::query(file_get_contents("../queries/insert_customer_account_relationships.sql"), $customer["CustomerSSN"], $account["AccountNumber"]);
             }
