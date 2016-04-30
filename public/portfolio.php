@@ -29,7 +29,8 @@
                 
                 if($update == 1)
                 {
-                    $transac = CS50::query("INSERT INTO transactions (AccountNumber, TransacCode, TransacName, TransacCharge, TransacType, TransacAmount) VALUES (?, ?, ?, ?, ?, ?)", $_POST["to-account"], jr_random(9), $_POST["name"], 0, "CD", floatval($_POST["amount"]));
+                    $balance = CS50::query("SELECT AccountBalance FROM accounts WHERE AccountNumber = ?", $_POST["to-account"]);
+                    $transac = CS50::query("INSERT INTO transactions (AccountNumber, TransacCode, TransacName, TransacCharge, TransacType, TransacAmount, AccountBalance) VALUES (?, ?, ?, ?, ?, ?, ?)", $_POST["to-account"], jr_random(9), $_POST["name"], 0, "CD", floatval($_POST["amount"]), $balance[0]["AccountBalance"]);
                     CS50::query("COMMIT");
                 }
                 else
@@ -47,7 +48,8 @@
 
                 if($update == 1)
                 {
-                    $transac = CS50::query("INSERT INTO transactions (AccountNumber, TransacCode, TransacName, TransacCharge, TransacType, TransacAmount) VALUES (?, ?, ?, ?, ?, ?)", $_POST["from-account"], jr_random(9), $_POST["name"], 0, "WD", -1 * floatval($_POST["amount"]));
+                    $balance = CS50::query("SELECT AccountBalance FROM accounts WHERE AccountNumber = ?", $_POST["from-account"]);
+                    $transac = CS50::query("INSERT INTO transactions (AccountNumber, TransacCode, TransacName, TransacCharge, TransacType, TransacAmount, AccountBalance) VALUES (?, ?, ?, ?, ?, ?, ?)", $_POST["from-account"], jr_random(9), $_POST["name"], 0, "WD", -1 * floatval($_POST["amount"]), $balance[0]["AccountBalance"]);
                     CS50::query("COMMIT");
                     header("Location: portfolio.php");
                 }
@@ -79,11 +81,14 @@
                 if($update_to == 1)
                 {
                     $transac = [0,0];
-                    $transac[0] = CS50::query(file_get_contents("../database/queries/insert_transaction.sql"), jr_random(9), $_POST["name"], 0, "TR", -1 * floatval($_POST["amount"]), $_POST["from-account"]);
-                    $transac[1] = CS50::query(file_get_contents("../database/queries/insert_transaction.sql"), jr_random(9), $_POST["name"], 0, "TR", floatval($_POST["amount"]), $_POST["to-account"]);
+                    $balance = CS50::query("SELECT AccountBalance FROM accounts WHERE AccountNumber = ?", $_POST["from-account"]);
+                    $transac[0] = CS50::query(file_get_contents("../database/queries/insert_transaction.sql"), jr_random(9), $_POST["name"], 0, "TR", -1 * floatval($_POST["amount"]), $_POST["from-account"], $balance[0]["AccountBalance"]);
+                    $balance = CS50::query("SELECT AccountBalance FROM accounts WHERE AccountNumber = ?", $_POST["to-account"]);
+                    $transac[1] = CS50::query(file_get_contents("../database/queries/insert_transaction.sql"), jr_random(9), $_POST["name"], 0, "TR", floatval($_POST["amount"]), $_POST["to-account"], $balance[0]["AccountBalance"]);
                     
                     if($transac[0] + $transac[1] == 2)
                     {
+
                         CS50::query("COMMIT");
                         header("Location: portfolio.php");
                     }

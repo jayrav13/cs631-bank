@@ -4,5 +4,6 @@ INSERT INTO transactions (
   TransacCharge, 
   TransacType, 
   TransacAmount, 
-  AccountNumber
-) VALUES (?, ?, ?, ?, ?, ?)
+  AccountNumber,
+  AccountBalance
+) VALUES (?, ?, ?, ?, ?, ?, ?);

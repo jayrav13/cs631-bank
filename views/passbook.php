@@ -24,7 +24,7 @@
                 <td><?= $transaction["TransacName"] ?></td>
                 <td><?= $transaction["TransacAmount"] > 0 ? $transaction["TransacAmount"] : ""?></td>
                 <td><?= $transaction["TransacAmount"] < 0 ? $transaction["TransacAmount"] : ""?></td>
-                <!--<td><?= $transaction["AccountBalance"] ?></td>-->
+                <td><?= $transaction["AccountBalance"] ?></td>
             </tr>
             <?php } ?>
         </table>

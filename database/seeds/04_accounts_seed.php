@@ -6,11 +6,11 @@
     CS50::init(__DIR__ . "/../../config.json");
 
     $rows = [
-        [jr_random(9), rand(100, 5000), 1],
-        [jr_random(9), rand(100, 5000), 1],
-        [jr_random(9), rand(100, 5000), 1],
-        [jr_random(9), rand(100, 5000), 1],
-        [jr_random(9), rand(100, 5000), 1],
+        [jr_random(9), 0, 1],
+        [jr_random(9), 0, 1],
+        [jr_random(9), 0, 1],
+        [jr_random(9), 0, 1],
+        [jr_random(9), 0, 1],
     ];
 
     foreach($rows as $row)
