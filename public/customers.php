@@ -2,6 +2,7 @@
 
     // configuration
     require("../includes/config.php");
+    require("../includes/functions.php");
     require("../middleware/employees.php");
 
     $customers = NULL;
@@ -28,6 +29,7 @@
             else
             {
                 header("Location: customers.php");
+                exit;
             }
             
         }
@@ -44,10 +46,12 @@
             if($update == 1)
             {
                 header("Location: customers.php");
+                exit;
             }
             else
             {
                 header("Location: customers.php?error=unexpected");
+                exit;
             }
         }
         elseif($_POST["action"] == "delete")
@@ -62,17 +66,59 @@
                 {
                     CS50::query("COMMIT");
                     header("Location: customers.php");
+                    exit;
                 }
                 else
                 {
                     CS50::query("ROLLBACK");
                     header("Location: customers.php?error=unexpected");
+                    exit;
                 }
             }
             else
             {
                 CS50::query("ROLLBACK");
                 header("Location: customers.php?error=unexpected");
+                exit;
             }
+        }
+        elseif($_POST["action"] == "new-account")
+        {
+            if(intval($_POST["amount"]) < 500)
+            {
+                header("Location: " . $_SERVER["HTTP_REFERER"] . "&error=underfunded");
+                exit;
+            }
+
+            CS50::query("START TRANSACTION");
+            $number = jr_random(9);
+            $query = CS50::query("INSERT INTO accounts (AccountNumber, AccountBalance, AccountType, InterestRate, BranchId) VALUES (?, ?, ?, ?, ?)", $number, $_POST["amount"], $_POST["account"], $_POST["interest"], 1);
+            
+            if($query == 1)
+            {
+                $connect = CS50::query("INSERT INTO customer_account (CustomerSSN, AccountNumber) VALUES (?, ?)", $_POST["CustomerSSN"], $number);
+                if($connect == 1)
+                {
+                    CS50::query("COMMIT");
+                    header("Location: " . $_SERVER["HTTP_REFERER"]);
+                    exit;
+                }
+                else
+                {
+                    CS50::query("ROLLBACK");
+                    header("Location: " . $_SERVER["HTTP_REFERER"] . "&error=unexpected");
+                    exit;
+                }
+            }
+            else
+            {
+                CS50::query("ROLLBACK");
+                header("Location: " . $_SERVER["HTTP_REFERER"] . "&error=unexpected");
+                exit;
+            }
+
+            header("Location: " . $_SERVER["HTTP_REFERER"]);
+            exit;
+            
         }
     }

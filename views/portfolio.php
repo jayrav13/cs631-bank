@@ -1,8 +1,32 @@
+<?php if(isset($_GET["error"])): ?>
+<div class="row text-center">
+    <div class="alert alert-danger col-md-4 col-md-offset-4" role="alert">
+        <?php
+            if($_GET["error"] == "balance")
+            {
+                echo "We're sorry, your balance does not support this transaction. Please try again.";
+            }
+            elseif($_GET["error"] == "unexpected")
+            {
+                echo "We're sorry, an unexpected error occured. Please try again.";
+            }
+            elseif($_GET["error"] == "underfunded")
+            {
+                echo "We're sorry, a new account must have at minimum $500 to be created. Please try again.";
+            }
+        ?>
+    </div>
+</div>
+<?php endif ?>
+
+<div class="row text-center">
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm">Passbook</button>
+</div>
+
 <div class="row">
     <style type="text/css">
 
     </style>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Passbook</button>
 
     <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
       <div class="modal-dialog modal-sm">
@@ -148,7 +172,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <form method="POST" action="customer.php" class="col-md-8 col-md-offset-2">
+                        <form method="POST" action="customers.php" class="col-md-8 col-md-offset-2">
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Customer Name</label>
@@ -159,6 +183,8 @@
                                 <label for="exampleInputPassword1">Employee Name</label>
                                 <input type="text" disabled class="form-control" value="<?= $user["EmpName"] ?>" name="name" id="exampleInputPassword1" placeholder="Add to Savings Account">
                             </div>
+                            <input type="text" class="form-control hidden" value="<?= $customer["CustomerSSN"] ?>" name="CustomerSSN" id="exampleInputPassword1" placeholder="Add to Savings Account">
+                            <input type="text" class="form-control hidden" value="<?= $customer["EmpSSN"] ?>" name="EmpSSN" id="exampleInputPassword1" placeholder="Add to Savings Account">
 
                             <div class="form-group">
                                 <label for="account">Account Type</label>
@@ -169,24 +195,18 @@
                                 </select>
                             </div>
 
-                            
 
                             <div class="form-group">
-                                <label for="form-account">Transaction To</label>
-                                <select class="form-control" name="to-account">
-                                    <option value="-1">Withdrawal</option>
-                                    <?php foreach($accounts as $account) { ?>
-                                    <option value="<?= $account["AccountNumber"] ?>"><?= $account["AccountType"] == 1 ? "Checking" : ($account["AccountType"] == 2 ? "Savings" : "Loan") ?> - <?= $account["AccountNumber"] ?> - $ <?= $account["AccountBalance"] ?></option>
-                                    <?php } ?>
-                                </select>
+                                <label for="amount">Starting Balance</label>
+                                <input name="amount" value="0" type="number" class="form-control" id="amount" placeholder="631">
                             </div>
 
                             <div class="form-group">
-                                <label for="amount">Amount</label>
-                                <input name="amount" type="number" class="form-control" id="amount" placeholder="631">
+                                <label for="amount">Interest Rate (if any)</label>
+                                <input name="interest" value="0" type="number" class="form-control" id="amount" placeholder="631">
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" name="action" value="new-account" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>

@@ -86,16 +86,17 @@
                     $balance = CS50::query("SELECT AccountBalance FROM accounts WHERE AccountNumber = ?", $_POST["to-account"]);
                     $transac[1] = CS50::query(file_get_contents("../database/queries/insert_transaction.sql"), jr_random(9), $_POST["name"], 0, "TR", floatval($_POST["amount"]), $_POST["to-account"], $balance[0]["AccountBalance"]);
                     
-                    if($transac[0] + $transac[1] == 2)
+                    if($transac[0] == 1 && $transac[1] == 1)
                     {
-
                         CS50::query("COMMIT");
                         header("Location: portfolio.php");
+                        exit;
                     }
                     else
                     {
                         CS50::query("ROLLBACK");
                         header("Location: portfolio.php?error=unexpected");
+                        exit;
                     }
 
                 }
@@ -103,22 +104,26 @@
                 {
                     CS50::query("ROLLBACK");
                     header("Location: portfolio.php?error=balance");
+                    exit;
                 }
                 else
                 {
                     CS50::query("ROLLBACK");
                     header("Location: portfolio.php?error=unexpected");
+                    exit;
                 }
             }
             elseif($update_from == -1)
             {
                 CS50::query("ROLLBACK");
                 header("Location: portfolio.php?error=balance");
+                exit;
             }
             else
             {
                 CS50::query("ROLLBACK");
                 header("Location: portfolio.php?error=unexpected");
+                exit;
             }
         }
 

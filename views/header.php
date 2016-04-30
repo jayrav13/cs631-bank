@@ -10,9 +10,9 @@
 		<link href="/css/styles.css" rel="stylesheet"/>
 
 		<?php if (isset($title)): ?>
-			<title>C$50 Finance: <?= htmlspecialchars($title) ?></title>
+			<title>Best Bank: <?= htmlspecialchars($title) ?></title>
 		<?php else: ?>
-			<title>C$50 Finance</title>
+			<title>Best Bank</title>
 		<?php endif ?>
 
 		<!-- https://jquery.com/ -->
@@ -44,7 +44,7 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<!-- LEFT NAV BAR -->
-						<li><a href="/">Home</a></li>
+						<!--<li><a href="/">Home</a></li>-->
 					</ul>
 					<?php if(empty($_SESSION["TOKEN"]) && empty($_SESSION["TYPE"])): ?>
 				  	<ul class="nav navbar-nav navbar-right">
