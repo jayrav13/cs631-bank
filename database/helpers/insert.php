@@ -16,7 +16,7 @@
         // Execute query with file contents if SQL file. On success, print.
         if(strpos($file, '.sql') !== false) 
         {
-            exec("mysql -u root cs631 < $file");
+            exec("mysql -u root -p cs631 < $file");
             echo("Query executed: $file\n");
         }
     }

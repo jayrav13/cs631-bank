@@ -1,4 +1,4 @@
-mysql -u root < delete.sql
+mysql -u root -p < delete.sql
 cd migrations/
 php migrate.php
 cd ../seeds/
