@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS customer_account (
 
     -- Foreign Key
     CustomerSSN INT UNSIGNED NOT NULL,
-    FOREIGN KEY (CustomerSSN) REFERENCES customers(CustomerSSN),
+    FOREIGN KEY (CustomerSSN) REFERENCES customers(CustomerSSN) ON DELETE CASCADE,
     AccountNumber INT UNSIGNED NOT NULL,
     FOREIGN KEY (AccountNumber) REFERENCES accounts(AccountNumber)
 

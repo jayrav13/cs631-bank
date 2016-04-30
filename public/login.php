@@ -6,6 +6,7 @@
     // if user reached page via GET (as by clicking a link or via redirect)
     if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
+        logout();
         // else render form
         render("login.php", ["title" => "Log In"]);
     }

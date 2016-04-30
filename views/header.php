@@ -44,8 +44,7 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<!-- LEFT NAV BAR -->
-						<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-						<li><a href="#">Link</a></li>
+						<li><a href="/">Home</a></li>
 					</ul>
 					<?php if(empty($_SESSION["TOKEN"]) && empty($_SESSION["TYPE"])): ?>
 				  	<ul class="nav navbar-nav navbar-right">
@@ -55,6 +54,7 @@
 				  	</ul>
 				  	<?php else: ?>
 				  	<ul class="nav navbar-nav navbar-right">
+				  		<li><p class="navbar-text">Signed In as <?= isset($user["EmpName"]) ? $user["EmpName"] : $user["CustomerName"] ?></p></li>
 				  		<li><a href="/logout.php">Logout</a></li>
 				  	</ul>
 				  	<?php endif ?>
