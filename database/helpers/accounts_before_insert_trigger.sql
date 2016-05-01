@@ -1,4 +1,4 @@
-USE cs631_backup;
+USE cs631;
 DELIMITER $$
 CREATE TRIGGER `accounts_check_balance` AFTER UPDATE ON `accounts`
 FOR EACH ROW

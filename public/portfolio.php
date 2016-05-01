@@ -17,6 +17,7 @@
         if(empty($_POST["name"]) || empty($_POST["from-account"]) || empty($_POST["to-account"]) || empty($_POST["amount"]))
         {
             header("Location: portfolio.php");
+            exit;
         }
         
         if(intval($_POST["from-account"]) == -1 || intval($_POST["to-account"]) == -1)
@@ -39,6 +40,7 @@
                 }
 
                 header("Location: portfolio.php");
+                exit;
             }
             else if(intval($_POST["to-account"]) == -1)
             {
@@ -57,10 +59,12 @@
                 {
                     CS50::query("ROLLBACK");
                     header("Location: portfolio.php?error=balance");
+                    exit;
                 }
                 else
                 {
                     header("Location: portfolio.php?error=unexpected");
+                    exit;
                 }    
                 
             }
